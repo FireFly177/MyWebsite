@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="./images/guitarIcon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+
+  <title>Guitar Interval Learning</title>
+</head>
+
+<body>
+  <div class="settings">
+    <div class="instrument-selector-container">
+      <label for="instrument-selector" class="instrument-selector-label">
+        <p><b>Select Instrument</b></p>
+      </label>
+      <select name="instrument-selector" id="instrument-selector">
+      </select>
+    </div>
+
+    <div class="accidental-selector-container">
+      <p><b>Accidental</b></p>
+      <div class="accidental-selector">
+        <div class="sharp-selector">
+          <input type="radio" class="acci-select" id="sharp" name="accidental" value="sharp" checked>
+          <label for="sharp">♯</label>
+        </div>
+        <div class="flat-selector">
+          <input type="radio" class="acci-select" id="flat" name="accidental" value="flat" checked>
+          <label for="flat">♭</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="frets-number-selector-container">
+      <label for="number-of-frets"><b>Number of frets</b></label>
+      <input type="number" id="number-of-frets" min="5" max="24" value="12">
+    </div>
+
+    <div class="show-all-notes-container">
+      <label for="show-all-notes"><b>Show All Notes</b></label>
+      <input type="checkbox" id="show-all-notes">
+    </div>
+
+    <!-- <div class="show-same-notes-container">
+            <label for="show-same-notes"><b>Show multiple notes</b></label>
+            <input type="checkbox" id="show-same-notes">
+        </div> -->
+  </div>
+
+  <div class="fretboard">
+    <!-- <div class="string">
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret single-fretmark"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret single-fretmark"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret single-fretmark"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret single-fretmark"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret">
+                <div class="double-fretmark"></div>
+            </div>
+        </div>
+        <div class="string">
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+        </div>
+        <div class="string">
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+        </div>
+        <div class="string">
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+        </div>
+        <div class="string">
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+        </div>
+        <div class="string">
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+            <div class="note-fret"></div>
+        </div> -->
+  </div>
+
+  <div class="note-name-section">
+  </div>
+
+  <div class="interval-selection-container">
+    <p><b>Select Interval</b></p>
+    <div class="interval-selection-table">
+      <div class="interval-selection-table-col">
+        <div class="interval-button">
+          <input type="checkbox" id="major-2nd" value="major-2nd">
+          <label for="major-2nd">Major 2nd</label>
+        </div>
+        <div class="interval-button">
+          <input type="checkbox" id="minor-2nd" value="minor-2nd">
+          <label for="minor-2nd">Minor 2nd</label>
+        </div>
+      </div>
+
+      <div class="interval-selection-table-col">
+        <div class="interval-button">
+          <input type="checkbox" id="major-3rd" value="major-3rd">
+          <label for="major-3rd">Major 3rd</label>
+        </div>
+        <div class="interval-button">
+          <input type="checkbox" id="minor-3rd" value="minor-3rd">
+          <label for="minor-3rd">Minor 3rd</label>
+        </div>
+      </div>
+
+      <div class="interval-selection-table-col">
+        <div class="interval-button">
+          <input type="checkbox" id="perfect-4th" value="perfect-4th">
+          <label for="perfect-4th">Perfect 4th</label>
+        </div>
+      </div>
+
+      <div class="interval-selection-table-col">
+        <div class="interval-button">
+          <input type="checkbox" id="tritone" value="tritone">
+          <label for="tritone">Tritone</label>
+        </div>
+      </div>
+
+      <div class="interval-selection-table-col">
+        <div class="interval-button">
+          <input type="checkbox" id="perfect-5th" value="perfect-5th">
+          <label for="perfect-5th">Perfect 5th</label>
+        </div>
+      </div>
+
+      <div class="interval-selection-table-col">
+        <div class="interval-button">
+          <input type="checkbox" id="major-6th" value="major-6th">
+          <label for="major-6th">Major 6th</label>
+        </div>
+        <div class="interval-button">
+          <input type="checkbox" id="minor-6th" value="minor-6th">
+          <label for="minor-6th">Minor 6th</label>
+        </div>
+      </div>
+
+      <div class="interval-selection-table-col">
+        <div class="interval-button">
+          <input type="checkbox" id="major-7th" value="major-7th">
+          <label for="major-7th">Major 7th</label>
+        </div>
+        <div class="interval-button">
+          <input type="checkbox" id="minor-7th" value="minor-7th">
+          <label for="minor-7th">Minor 7th</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+
+</html>

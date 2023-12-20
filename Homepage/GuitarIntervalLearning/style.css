@@ -1,0 +1,313 @@
+:root {
+    --fretboard-height: 300;
+    --half-fretboard-height: calc( var(--fretboard-height) / 2 );
+    --number-of-strings: 6;
+    --string-height: 10;
+    --half-string-height: calc( var(--string-height) / 2 );
+    --string-top-position: calc( var(--fretboard-height) / var(--number-of-strings) / 2 - var(--half-string-height) );
+    --double-fretmark-position-1: calc( var(--fretboard-height) * 0.25 );
+    --double-fretmark-position-2: calc( var(--fretboard-height) * 0.75 );
+    --note-name-opacity: 0;
+    --note-name-color: #A52422;
+    --setting-component-min-width: 150px;
+    --interval-background-color: #2D3142;
+    --interval-font-color: #D3D3D3; 
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+}
+
+
+body {
+    background-color: #2D3142;
+    font-family: Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+/* Setting */
+.settings {
+    width: 100%;
+    display: flex;
+    color: #2D3142;
+    background-color: #77A0A9;
+    padding: 0px;
+    justify-content: space-between;
+    font-size: 20px;
+}
+.settings div {
+    min-width: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+
+/* Select Instrument */
+.instrument-selector-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.instrument-selector-label {
+    margin: 15px;
+    text-align: center;
+}
+#instrument-selector {
+    display: inline-block;
+    margin-bottom: 15px;
+    size: 1000px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#instrument-selector::before {
+    border-left: solid transparent;
+}
+
+
+.accidental-selector-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.accidental-selector-container p {
+    margin: 15px;
+    text-align: center;
+}
+.accidental-selector {
+    size: 100px;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+.frets-number-selector-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.frets-number-selector-container label{
+    margin: 15px;
+    text-align: center;
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    color: #77A0A9;
+}
+input[type=number]::-moz-inner-spin-button, input[type=number]::-moz-outer-spin-button {
+    color: #77A0A9;
+}
+input[type=number] {
+    width: 35px;
+    transform: translate(0%, 35%);
+    background-color: #77A0A9;
+    border: none;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.show-all-notes-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.show-all-notes-container label {
+    margin: 15px;
+    text-align: center;
+}
+#show-all-notes {
+    border: none;
+    justify-content: space-between;
+    align-items: center;
+    transform: translate(0%, 45%);
+}
+
+
+.fretboard {
+    display: flex;
+    flex-direction: column;
+    background-color: #BE975B;
+    background-image: url(./images/wood-pattern.png);
+    width: 100%;
+    height: calc(var(--fretboard-height) * 1px);
+    margin-top: 50px;
+}
+.string {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.string::before {
+    content: "";
+    width: 100%;
+    height: calc(var(--string-height) * 1px); 
+    background: linear-gradient(#eee, #999);
+    box-shadow: 0px 5px 10px;
+    z-index: 1;
+    position: absolute;
+    top: calc(var(--string-top-position) * 1px);
+}
+.note-fret {
+    display: flex;
+    flex: 1;
+    border-right: 10px solid;
+    border-image: linear-gradient(to left, #777, #bbb, #777) 1 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.note-fret:first-child {
+    background-color: #161717;
+    min-width: 76px;
+    border-right: 12px solid;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%;
+}
+.note-fret::before {
+    content: attr(data-note);
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    line-height: 33px;
+    text-align: center;
+    background-color: var(--note-name-color);
+    color: lightgray;
+    opacity: var(--note-name-opacity);
+    z-index: 2;
+}
+.single-fretmark::after {
+    top: calc( var(--half-fretboard-height) * 1px );
+    transform: translate(0, -50%);
+}
+.double-fretmark::before {
+    top: calc( var(--double-fretmark-position-1) * 1px );
+    transform: translate(-140%, -50%);
+}
+.double-fretmark::after {
+    top: calc( var(--double-fretmark-position-2) * 1px );
+    transform: translate(-140%, -50%);
+}
+.single-fretmark::after, .double-fretmark::after, .double-fretmark::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: black;
+}
+
+
+/* Note name section */
+.note-name-section {
+    width: 100%;
+    color: lightgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.note-name-section span {
+    font-weight: 10;
+    font-size: 50px;
+    margin: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.note-name-section span:hover {
+    color: #77A0A9;
+}
+
+
+/* Interval section */
+.interval-selection-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    color: lightgray;
+    justify-content: center;
+    align-items: center;
+}
+.interval-selection-container p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    font-size: 50px;
+    margin: 20px;
+    margin-top: 50px;
+}
+.interval-selection-table {
+    width: 90%;
+    min-height: 120px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    color: lightgray;
+}
+.interval-selection-table-col {
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.3);
+    /* flex-basis: calc(10% - 10px); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+.interval-button label {
+    display: block;
+    padding: 15px;
+    margin: 15px;
+    border: solid;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: var(--interval-background-color);
+    color: var(--interval-font-color);
+    transition: background-color 0.3s ;
+    font-size: 18px;
+    font-weight: bold;
+}
+.interval-button label:hover {
+    box-shadow: 15px 15px 10px #161717;
+    border-color: var(--interval-font-color);
+    /* background-color: var(--interval-font-color);
+    color: var(--interval-background-color); */
+}
+.interval-button input[type="checkbox"]:checked + label {
+    border-color: var(--interval-font-color);
+    background-color: var(--interval-font-color);
+    color: var(--interval-background-color);
+}
+.interval-selection-container input[type="checkbox"] {
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
